@@ -1,0 +1,15 @@
+Package: TPGLDA
+Type: Package
+Title: Novel prediction of associations be-tween lncRNAs and diseases via lncRNA-disease-gene tripartite graph
+Version: 1.0
+Date: 2017-05-13
+Author: Liang,Ding
+Maintainer: Ding520@mail.ustc.edu.cn
+Description: This package is implemented TPGLDA algoritm.
+Depends:
+    R (>= 3.2.0)
+Import: pROC
+URL: 
+License: Artistic-2.0
+LazyData: TRUE
+RoxygenNote: 5.0.1

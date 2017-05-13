@@ -10,26 +10,24 @@ Developer: Liang,Ding(Ding520@mail.ustc.edu.cn) from Health Informatics Lab, Sch
 ## **Requirement**
 
 4GB memory
-
-MATLAB R2015a or later
+R version 3.2.4 or later
 
 ## **Related data information need to first load in tripartite graph** 
 
 - /data/known_lncRNA_disease_interaction.txt
 - /data/known_gene_disease_interaction.txt
 
-The first text file _known_lncRNA_disease_interaction.txt_ is a table of konwn binary associations between diseases and lncRNAs. 
-The second text file _known_gene_disease_interaction.txt_ is a table of konwn binary associations between genes and disease.
-
 ## **Run TPGLDA to infer potential associations between lncRNAs and diseases**
 
-We provide relevant experimental validation data of the lncRNA_disease associations and  gene-disease associations. To analyze these data on TPGLDA to further infer potential associations between lncRNAs and diseases, you should input the appropriate code in the matlab Command Window:
-	
-    A=textread('known_lncRNA_disease_interaction.txt');
-	B=textread('known_gene_disease_interaction.txt');
-	TPGLDA(A,B,gama)
+We provide relevant experimental validation data of the lncRNA_disease associations and  gene-disease associations. To analyze these data on TPGLDA to further infer potential associations between lncRNAs and diseases, you should input the appropriate code in the R console:
+	known_gene_disease_interaction <- read.delim("~/data/known_gene_disease_interaction.txt", header=FALSE)
+	known_lncRNA_disease_interaction <- read.delim("~/data/known_lncRNA_disease_interaction.txt", header=FALSE)
+	lncRNAsimilarity <- read.delim("~/data/lncRNAsimilarity.txt", header=FALSE)
+	diseasesimilarith <- read.delim("~/data/diseasesimilarith.txt", header=FALSE)
+    TPGLDA(known_lncRNA_disease_interaction,known_gene_disease_interaction,gama=0.6);
+	LOOCV(known_lncRNA_disease_interaction,known_gene_disease_interaction,gama=0.6,color="red")
 
-Then, the predicted results will be automatically saved in the excel table _./final prediction candidate pairs.xls/_.
+Then, the corresponding predicted performance will be showed as the form of ROC curve and auc value.
 
 ## Configurations of TPGLDA
 ### Related configuration files
@@ -69,21 +67,16 @@ The descriptions of output variables of TPGLDA are provided below:
     ==================================================================================================
     | VARIABLE NAME        | DESCRIPTION                                                             |
     ==================================================================================================
-    | predicted_results    |Predicted_results table shows the predicted results of potential lncRNA- |
-    |                      |disease associations in descending order.In order to show the predictions|
-    |                      |more clearly, we write the top 10000 potential candidate pairs in "final |
-    |                      |prediction candidate pairs.xls".                                            |
-    --------------------------------------------------------------------------------------------------
     |final_Rscore          |The final_Rscore vectors is the relevance score of disease-related lncRNA|
     |                      |computed by TPGLDA, and a higher value of a certain final_Rscore presents|
     |                      | a larger potential of the lncRNA to be the disease candidate.           |
     -------------------------------------------------------------------------------------------------
-Other notes and output results can be available in the _./TPGLDA.m_.   
+Other notes and output results can be available by changing the _./TPGLDA.R related codes_.   
 
- ## TPGLDA for users without MATLAB licenses
-For users without MATLAB licenses, we also offer R codes of TPGLDA.The detailed method can be seen in **R** package.
-
+ ## For users without corresponding R version and corresponding "pROC" package
+For users without corresponding R version, you can download from "https://www.r-project.org/".
+For some users cannot plot corresponding ROC curve,you can install corresponding "pROC" package by inputting code in the R console to :
+ install.packages("pROC")
 ## **Contact**
 
 Please feel free to contact us if you need any help: Ding520@mail.ustc.edu.cn
-
