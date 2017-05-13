@@ -10,6 +10,7 @@ Developer: Liang,Ding(Ding520@mail.ustc.edu.cn) from Health Informatics Lab, Sch
 ## **Requirement**
 
 4GB memory
+
 R version 3.2.4 or later
 
 ## **Related data information need to first load in tripartite graph** 
